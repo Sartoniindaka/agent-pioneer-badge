@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agent Pioneer Badge — free badge for Agent ID holders</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #0b0e1a; color: #e8eaf2; font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 640px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { font-size: 28px; margin: 0 0 8px; }
+  h1 span { color: #f0b90b; }
+  p { line-height: 1.6; color: #c6cad8; }
+  .card { border: 1px solid #2a2f45; border-radius: 14px; padding: 20px; margin: 20px 0; background: #12162a; }
+  .card h2 { margin: 0 0 10px; font-size: 18px; }
+  button { background: #f0b90b; color: #111; border: 0; border-radius: 10px; padding: 12px 20px; font-size: 16px; font-weight: 700; cursor: pointer; }
+  button:disabled { background: #3a3f55; color: #9aa0b5; cursor: not-allowed; }
+  button.secondary { background: transparent; color: #f0b90b; border: 1px solid #f0b90b; }
+  .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; word-break: break-all; }
+  .muted { color: #8a8fa3; font-size: 14px; }
+  .ok { color: #4ade80; }
+  .warn { color: #f0b90b; }
+  .err { color: #f87171; }
+  #badgeImg { width: 100%; max-width: 320px; border-radius: 12px; display: block; margin: 12px auto; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  a { color: #f0b90b; }
+  footer { margin-top: 32px; font-size: 13px; color: #8a8fa3; line-height: 1.6; }
+  .stat { font-size: 28px; font-weight: 800; color: #fff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Agent <span>Pioneer</span> Badge</h1>
+  <p>A free, non-transferable identity badge for Agent ID holders on BNB Chain.
+     One badge per Agent ID. Claiming is free — you only pay the network gas.
+     The badge has no monetary value and promises no returns.</p>
+
+  <div class="card" id="deployCard" hidden>
+    <h2 class="warn">Not deployed yet</h2>
+    <p>The badge contract has not been deployed to BNB Chain yet. Check back after launch.</p>
+  </div>
+
+  <div class="card">
+    <h2>1. Connect your wallet</h2>
+    <p class="muted">Use your injected wallet (Binance Wallet or MetaMask) on BNB Chain (chain ID 56).
+       Nothing is sent to any server — this page talks only to your wallet and the public chain.</p>
+    <div class="row">
+      <button id="connectBtn">Connect wallet</button>
+      <span id="accountLine" class="mono muted"></span>
+    </div>
+    <p id="chainLine" class="muted"></p>
+  </div>
+
+  <div class="card">
+    <h2>2. Check your eligibility</h2>
+    <p id="eligLine" class="muted">Connect your wallet to see whether it holds an Agent ID.</p>
+    <p id="handleLine" class="mono"></p>
+  </div>
+
+  <div class="card">
+    <h2>3. Claim your badge</h2>
+    <p class="muted">Free — the claim costs 0 value. You only pay gas. Your wallet will ask you to
+       confirm the transaction; nothing is sent until you approve it.</p>
+    <div class="row">
+      <button id="claimBtn" disabled>Claim my badge</button>
+      <span id="gasLine" class="mono muted"></span>
+    </div>
+    <p id="claimStatus" class="muted"></p>
+  </div>
+
+  <div class="card" id="badgeCard" hidden>
+    <h2>Your badge</h2>
+    <img id="badgeImg" alt="Your Agent Pioneer Badge">
+    <p id="badgeMeta" class="mono muted"></p>
+    <p><a id="badgeBscScan" href="#" target="_blank" rel="noopener">View your badge token on BscScan</a></p>
+  </div>
+
+  <div class="card">
+    <h2>Badges claimed</h2>
+    <div class="stat" id="totalClaimed">…</div>
+    <p class="muted">Total Agent Pioneer Badges claimed so far.</p>
+  </div>
+
+  <footer>
+    <p>Contracts (BNB Chain):<br>
+       Agent ID registry: <a class="mono" href="https://bscscan.com/address/0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F" target="_blank" rel="noopener">0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</a><br>
+       Agent Pioneer Badge: <span id="badgeAddr" class="mono">not deployed yet</span></p>
+    <p>Owner permissions (disclosed): the contract owner can only pause and unpause claiming.
+       There is no mint, burn, fee, or fund-withdrawal power, and the contract holds no funds.
+       Source code is open and verified on BscScan after deployment.</p>
+    <p>The badge is a free identity marker. It is non-transferable, has no monetary value,
+       and does not promise any income or returns.</p>
+  </footer>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

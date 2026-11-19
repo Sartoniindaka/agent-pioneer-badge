@@ -1,0 +1,15 @@
+[profile.default]
+src = "src"
+out = "out"
+libs = ["lib"]
+solc_version = "0.8.24"
+optimizer = true
+optimizer_runs = 200
+evm_version = "cancun"
+
+# BscScan verification must use these exact settings:
+#   compiler v0.8.24+commit.e11b9ed9, optimizer ON, runs 200, EVM cancun.
+# See script/Deploy.s.sol for the verify-contract command.
+
+[rpc_endpoints]
+bsc = "https://bsc-dataseed.binance.org/"
